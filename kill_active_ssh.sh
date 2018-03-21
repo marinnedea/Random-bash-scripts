@@ -7,7 +7,7 @@ ses_timeout_min=15
 let ses_timeout_sec=ses_timeout_min*60
 
 # Create an array with the active sessions details
-declare -a ses_array="$(ps -eo etimes,pid,cmd --sort=etimes | grep '@pts' | grep -v grep | awk -F 'sshd:' '{ print $1 }')"
+declare -a ses_array="$(ps -eo etimes,pid,cmd --sort=etimes | grep '@pts' | grep -v 'grep\|root' | awk -F 'sshd:' '{ print $1 }')"
 
 # Iterate through each line of the array
 printf '%s\n' "${ses_array[*]}" | while read line; do
