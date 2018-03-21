@@ -9,7 +9,7 @@ let warning_time_min=ses_timeout_sec-70
 let warning_time_max=ses_timeout_sec-50
 
 # Builtding an array
-declare -a ses_array="$(ps -eo etimes,pid,cmd --sort=etimes | grep '@pts' | grep -v grep | awk -F 'sshd:|@' '{ print $1" "$2" "$3 }')"
+declare -a ses_array="$(ps -eo etimes,pid,cmd --sort=etimes | grep '@pts' | grep -v 'grep\|root' | awk -F 'sshd:|@' '{ print $1" "$2" "$3 }')"
 
 printf '%s\n' "${ses_array[*]}" | while read line; do
 
