@@ -1,29 +1,29 @@
 #! /usr/bin/env bash 
 
-#####################################################################
+#########################################################################
 # About: 	Force close ssh session for users after specific time	#
 # Usage:	Change the "ses_tmo" and "minutes_to_warn" values to 	#
-#			your own values.										#
-#			Save the script somewhere in the system.				#
-#																	#
-#			Make sure the script has executable permissions:		#
-#			chmod +x /full/path/to/sript							#
-#			Set a cron by opening the cronjob editor: crontab -e 	#
-#																	#
-#			Add the cron to run it periodically. E.G.:				#
-#			- run every 1 minute :   * * * * * /full/path/to/sript 	#
-#  			- run every 5 minutes: */5 * * * * /full/path/to/sript	#
-# Author: 	Marin Nedea <marin.nedea@microsoft.com>					#
-#####################################################################
-# Disclaimer:														#
-#  			This script is provide "as it is", without any warranty.#
-#			If you cause any damage to your system by using this 	#
-#			script, this is solely your responsibility. Neither the #
-#			script author or the company he/she works for should be #
-#			held responsible for the results, wanted or unwanted, 	#
-#			this script may create while being used.				#
-#																	#
-#####################################################################					
+#		your own values.					#
+#		Save the script somewhere in the system.		#
+#									#
+#		Make sure the script has executable permissions:	#
+#		chmod +x /full/path/to/sript				#
+#		Set a cron by opening the cronjob editor: crontab -e 	#
+#									#
+#		Add the cron to run it periodically. E.G.:		#
+#		- run every 1 minute :   * * * * * /full/path/to/sript 	#
+#  		- run every 5 minutes: */5 * * * * /full/path/to/sript	#
+# Author: 	Marin Nedea <marin.nedea@microsoft.com>			#
+#########################################################################
+# Disclaimer:								#
+#  		This script is provide "as it is", without any warranty.#
+#		If you cause any damage to your system by using this 	#
+#		script, this is solely your responsibility. Neither the #
+#		script author or the company he/she works for should be #
+#		held responsible for the results, wanted or unwanted, 	#
+#		this script may create while being used.		#
+#									#
+#########################################################################					
 
 
 # Set the session timout value in minutes
@@ -69,7 +69,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 				# Echo to user pts
                 echo "Hello $user! Your session will expire and it will be closed automatically in less than $minutes_to_warn minute(s)! Save your work now!" > /dev/$session_pts              
                 # Log the warning
-				echo "$user has been warned that the session will exprire in less than $minutes_to_warn minute(s)" | add_date  >> $log_file
+		echo "$user has been warned that the session will exprire in less than $minutes_to_warn minute(s)" | add_date  >> $log_file
         fi
 
         # Compare the time passed since the session started with our session timeout value
@@ -79,7 +79,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
                 kill -9 $session_pid | add_date &>> $log_file
         else
                 # Log the sessions that are yet under the time limit
-				echo "$user has been logged in for $min_passed minutes and has not rached the $ses_tmo minutes allocated.Skiping!" | add_date >> $log_file
+		echo "$user has been logged in for $min_passed minutes and has not rached the $ses_tmo minutes allocated.Skiping!" | add_date >> $log_file
         fi
 
 done < "$temp_file"
