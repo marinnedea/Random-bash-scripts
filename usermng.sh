@@ -114,35 +114,9 @@ select opt in "${options[@]}" "Quit"; do
     esac
 
 done
-
-
-
-
-
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Show the menu 
 title='Welcome to the User Management Application'
 prompt='Please select your action: '
 options=("Add a new user" "Delete an user" "Modify an existing user")
